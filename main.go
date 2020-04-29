@@ -1,21 +1,15 @@
 package main
- 
+
 import (
-    "fmt"
-    "net/http"
+  "fmt"
+  "net/http"
 )
- 
+
 func homeHandler(w http.ResponseWriter, r *http.Request) {
-    w.WriteHeader(http.StatusOK)
-    fmt.Fprint(w, "home")
+  fmt.Fprintf(w, "<h1>Kubernetes is awesome!</h1>")
 }
- 
-func usersHandler(w http.ResponseWriter, r *http.Request) {
-    w.WriteHeader(http.StatusOK)
-    fmt.Fprint(w, "users")
-}
- 
+
 func main() {
-    http.HandleFunc("/home", homeHandler)
-    http.HandleFunc("/users", usersHandler)
-    http.ListenAndServe(":8181", nil)
+  http.HandleFunc("/", homeHandler)
+  http.ListenAndServe(":8000", nil)
+}
